@@ -4,7 +4,7 @@ body {
 
 #face {
 	width: 100%;
-	height: 600px;
+	height: 500px;
 	margin: 90px auto 10px;	
 }
 #output {
@@ -37,7 +37,8 @@ body {
 		filter: invert();
 		background-position: center;
 		background-size: contain;
-		background-repeat: no-repeat;
+		max-width: 800px;
+
 	}
 	#output:after {
 		content: 'Moon';
