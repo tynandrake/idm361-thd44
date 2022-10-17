@@ -11,6 +11,9 @@ const allEl = document.querySelector("#all");
 const incomeList = document.querySelector("#income .list");
 const expenseList = document.querySelector("#expense .list");
 const allList = document.querySelector("#all .list");
+const add = document.getElementById('add');
+const modal_container = document.getElementById('modal_container');
+const close = document.getElementById('close');
 
 // Tab buttons
 const incomeBtn = document.querySelector(".tab1");
@@ -49,6 +52,12 @@ allBtn.addEventListener("click", function () {
     show(allEl);
     hide([incomeEl, expenseEl]);
 });
+add.addEventListener("click", () => {
+    modal_container.classList.add('show');
+});
+close.addEventListener("click", () => {
+    modal_container.classList.remove('show');
+});
 
 // addExpense.addEventListener("click", function() {
 //     if(!expenseTitle.value || !expenseAmount.value ) return;
@@ -70,7 +79,7 @@ allBtn.addEventListener("click", function () {
 //         amount : incomeAmount.value
 //     }
 //     ENTRY_LIST.push(income);
-// })
+// });
 
 // Functions
 function show(element) {

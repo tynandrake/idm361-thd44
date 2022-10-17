@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="cache.manifest">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale= 1.0, user-scalable=no, width=device-width, maximum-scale=1.0">
@@ -13,7 +13,9 @@
 	<meta name="format-detection" content="telephone=no">
 
 	<link rel="stylesheet" href="css-normalize.css">
+	<link rel="stylesheet" href="css-add2home.css">
 	<link rel="stylesheet" href="css-main.css">
+	
 
 	<!-- **** ICONS **** -->
 	<link href="img/1024.png" sizes="1024x1024" rel="apple-touch-icon">
@@ -37,14 +39,14 @@
 	<link href="img/20.png" sizes="20x20" rel="apple-touch-icon">
 
 	<title>Budget</title>
-	
+
 </head>
 <body>
 	<div id="container">
 		<div class="budget-header">
 			<div class="balance">
 				<div class="value">$400</div> 
-				<div class="title">Balance</div>
+				<div class="header-title">Balance</div>
 			</div>
 			<div class="account">
 				<div class="income">
@@ -79,14 +81,44 @@
 				</li>
 			</ul>
 			<div class="input">
-				<div class="add-button">
+				<div class="add-button" id="add">
 					<!-- add plus button -->
 					<img src="img/add-btn.svg" alt="add button">
+				</div>
+			</div>
+		</div>
+		<div class="modal-container" id="modal_container">
+			<div class="modal">
+				<div class="modal-header">
+					<div class="modal-title">Add Entry</div>
+					<button id="close">Cancel</button>
+				</div>
+				<div class="modal-input">
+					<form action="" method="GET" class="modal-form">
+						<div class="form-input-group">
+							<label for="expense">Expense</label>
+							<input type="text" id="expense" name="expense">
+						</div>
+						<div class="form-input-group">
+							<label for="amount">Amount</label>
+							<input type="number" id="amount" name="amount">
+						</div>
+						<div class="form-input-submit">
+							<input type="submit" value="Confirm">
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 		
 	</div>
 </body>
+<script src="js-refresh-manifest.js"></script>
+<script>
+	var addToHomeConfig = {
+		touchIcon: true
+	}
+</script>
+<script src="js-add2home.js"></script>
 <script src="js-main.js"></script>
 </html>
