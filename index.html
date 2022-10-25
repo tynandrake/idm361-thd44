@@ -43,75 +43,111 @@
 </head>
 <body>
 	<div id="container">
+		<!-- Header Sections -->
 		<div class="budget-header">
 			<div class="balance">
-				<div class="value">$400</div> 
+				<div class="value">$</div> 
 				<div class="header-title">Balance</div>
 			</div>
 			<div class="account">
 				<div class="income">
-					<div class="income-total">$650</div>
+					<div class="income-total"></div>
 					<div class="title">Income</div>
 				</div>
 				<div class="chart"></div>
 				<div class="expense">
-					<div class="expense-total">$250</div>
+					<div class="expense-total"></div>
 					<div class="title">Expense</div>
 				</div>
 			</div>
 		</div>
+
+		<!-- Toggle Bar -->
 		<div class="budget-dashboard">
 			<div class="toggle">
-				<div class="tab1">Income</div>
-				<div class="tab2 active">Expense</div>
+				<div class="tab1 active">Income</div>
+				<div class="tab2">Expense</div>
 				<div class="tab3">All</div>
 			</div>
 		</div>
-		<div class="hide" id="expense"></div>
+
+		<!-- List of Items -->
 		<div id="income">
-			<ul class="list">
-				<li id='0' class="income entry-container">
-					<div class="item">
-						<div class="entry">Lunch:</div>
-						<div class="cost">$9.99</div>
-					</div>
-					<div class="edit-button">
-						<img src="img/edit-btn.svg" alt="edit button">
-					</div>
-				</li>
-			</ul>
-			<div class="input">
-				<div class="add-button" id="add">
-					<!-- add plus button -->
-					<img src="img/add-btn.svg" alt="add button">
-				</div>
-			</div>
+			<ul class="list"></ul>
 		</div>
-		<div class="modal-container" id="modal_container">
+		<div id="expense">
+			<ul class="list hide"></ul>
+		</div>
+		<div id="all">
+			<ul class="list hide"></ul>
+		</div>
+
+
+		
+
+		<!-- Modals -->
+		<div class="modal-container modal-container-income" id="modal_container_income">
 			<div class="modal">
 				<div class="modal-header">
-					<div class="modal-title">Add Entry</div>
-					<button id="close">Cancel</button>
+					<div class="modal-title">Add Income</div>
+					<button class="close1 close">Cancel</button>
 				</div>
 				<div class="modal-input">
-					<form action="" method="GET" class="modal-form">
-						<div class="form-input-group">
-							<label for="expense">Expense</label>
-							<input type="text" id="expense" name="expense">
+					<div class="input">
+						<div class="input-style">
+							<div>
+								Income
+								<input type="text" id="income-title-input" name="title" placeholder="Title">
+							</div>
+							<div>
+								Amount
+								<input type="number" id="income-amount-input" name="amount" placeholder="$0">
+							</div>
 						</div>
-						<div class="form-input-group">
-							<label for="amount">Amount</label>
-							<input type="number" id="amount" name="amount">
+						<div class="add-income confirm-btn">
+							Confirm
 						</div>
-						<div class="form-input-submit">
-							<input type="submit" value="Confirm">
-						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
-		
+		<div class="modal-container modal-container-expense" id="modal_container_expense">
+			<div class="modal">
+				<div class="modal-header">
+					<div class="modal-title">Add Expense</div>
+					<button class="close2 close">Cancel</button>
+				</div>
+				<div class="modal-input">
+					<div class="input">
+						<div class="input-style">
+							<div>
+								Expense
+								<input type="text" id="expense-title-input" name="title" placeholder="Title">
+							</div>
+							<div>
+								Amount
+								<input type="number" id="expense-amount-input" name="amount" placeholder="$0">
+							</div>
+						</div>
+						<div class="add-expense confirm-btn">
+							Confirm
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+
+
+		<!-- Add Buttons -->
+		<div class="add-btn">
+			<img id="add-btn-income" src="img/add-btn.svg">
+		</div>
+		<div class="add-btn hide">
+			<img id="add-btn-expense" src="img/add-btn.svg">
+		</div>
+
+
 </body>
 <script src="js-refresh-manifest.js"></script>
 <script>
@@ -120,5 +156,6 @@
 	}
 </script>
 <script src="js-add2home.js"></script>
+<script src="chart.js"></script>
 <script src="js-main.js"></script>
 </html>
