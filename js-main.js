@@ -14,6 +14,8 @@ const allList = document.querySelector("#all .list");
 const incomeModal = document.querySelector(".modal-container-income");
 const expenseModal = document.querySelector(".modal-container-expense");
 
+const modalBackground = document.querySelector(".modal-background");
+
 // Select Btns
 const incomeBtn = document.querySelector(".tab1");
 const expenseBtn = document.querySelector(".tab2");
@@ -32,12 +34,16 @@ const addExpense = document.querySelector(".add-expense");
 const expenseTitle = document.getElementById("expense-title-input");
 const expenseAmount = document.getElementById("expense-amount-input");
 
+// const editBtn = document.getElementById("edit");
+
 // Variables
 let ENTRY_LIST = [];
 let balance = 0, income = 0, outcome = 0;
+let EDITTING_ID = null;
 
 ENTRY_LIST = JSON.parse(localStorage.getItem("entry_list")) || [];
 updateUI();
+console.log(ENTRY_LIST);
 
 const DELETE = "delete", EDIT = "edit";
 
@@ -61,33 +67,65 @@ allBtn.addEventListener("click", function(){
     active(allBtn);
     inactive([incomeBtn, expenseBtn]);
 })
+
+
 // Modal 
 addBtnIncome.addEventListener("click", () => {
-    incomeModal.classList.add('modal-show');
+    openIncomeModal();
 });
 addBtnExpense.addEventListener("click", () => {
-    expenseModal.classList.add('modal-show');
+    openExpenseModal();
 });
 closeBtnIncome.addEventListener("click", () => {
-    incomeModal.classList.remove('modal-show');
+    closeIncomeModal();
 });
 closeBtnExpense.addEventListener("click", () => {
-    expenseModal.classList.remove('modal-show');
+    closeExpenseModal();
 });
 
+function openIncomeModal() {
+    modalBackground.classList.add('open-modal-background', 'animateFade');
+
+    incomeModal.classList.add('modal-show', 'animate');
+}
+
+function closeIncomeModal() {
+    modalBackground.classList.remove('open-modal-background', 'animateFade');
+
+    incomeModal.classList.remove('modal-show', 'animate');
+    EDITTING_ID = null;
+}
+
+function openExpenseModal() {
+    modalBackground.classList.add('open-modal-background', 'animateFade');
+
+    expenseModal.classList.add('modal-show', 'animate');
+}
+function closeExpenseModal() {
+    modalBackground.classList.remove('open-modal-background', 'animateFade');
+
+    expenseModal.classList.remove('modal-show', 'animate');
+    EDITTING_ID = null;
+}
 
 addExpense.addEventListener("click", function () {
     // IF ONE OF THE INPUTS IS EMPTY => EXIT
     if (!expenseTitle.value || !expenseAmount.value) return;
-
-    // SAVE THE ENTRY TO ENTRY_LIST
     let expense = {
         type: "expense",
         title: expenseTitle.value,
         amount: parseInt(expenseAmount.value)
     }
-    ENTRY_LIST.push(expense);
+    // SAVE THE ENTRY TO ENTRY_LIST
+    if(EDITTING_ID !== null) {
+        ENTRY_LIST[EDITTING_ID] = expense;
+        EDITTING_ID = null;
+    }
+    else{
+        ENTRY_LIST.push(expense);
+    }
 
+    closeExpenseModal();
     updateUI();
     clearInput([expenseTitle, expenseAmount])
 })
@@ -101,8 +139,14 @@ addIncome.addEventListener("click", function () {
         title: incomeTitle.value,
         amount: parseInt(incomeAmount.value)
     }
-    ENTRY_LIST.push(income);
-
+    if(EDITTING_ID !== null) {
+        ENTRY_LIST[EDITTING_ID] = income;
+        EDITTING_ID = null;
+    }
+    else{     
+        ENTRY_LIST.push(income);
+    }
+    closeIncomeModal();
     updateUI();
     clearInput([incomeTitle, incomeAmount])
 })
@@ -112,37 +156,42 @@ expenseList.addEventListener("click", deleteOrEdit);
 allList.addEventListener("click", deleteOrEdit);
 
 // Helpers
+
 function deleteOrEdit(event) {
     const targetBtn = event.target;
 
     const entry = targetBtn.parentNode;
 
-    if (targetBtn.id == DELETE) {
+    if (targetBtn.id == "delete") {
         deleteEntry(entry);
-    } else if (targetBtn.id == EDIT) {
+    } else if (targetBtn.id == "edit") {
         editEntry(entry);
     }
 }
+
 function deleteEntry(entry) {
     ENTRY_LIST.splice(entry.id, 1);
 
     updateUI();
 }
+
 function editEntry(entry) {
-    console.log(entry)
-    let ENTRY = ENTRY_LIST[entry.id];
+    // console.log('We are here');
+    let ENTRY = ENTRY_LIST[entry.parentNode.id];
+   
+    EDITTING_ID = entry.parentNode.id;
 
     if (ENTRY.type == "income") {
-        incomeModal.classList.add('modal-show');
         incomeAmount.value = ENTRY.amount;
         incomeTitle.value = ENTRY.title;
+        openIncomeModal();
     } else if (ENTRY.type == "expense") {
-        expenseModal.classList.add('modal-show');
         expenseAmount.value = ENTRY.amount;
         expenseTitle.value = ENTRY.title;
+        openExpenseModal();
     }
 
-    deleteEntry(entry);
+    // deleteEntry(entry);
 }
 function show() {
     var hide = Array.prototype.slice.call(document.querySelectorAll(".hide"));
@@ -190,6 +239,7 @@ function updateUI() {
     });
 
     updateChart(income, expense);
+
 
     localStorage.setItem("entry_list", JSON.stringify(ENTRY_LIST));
 }
