@@ -114,7 +114,7 @@ addExpense.addEventListener("click", function () {
     let expense = {
         type: "expense",
         title: expenseTitle.value,
-        amount: parseInt(expenseAmount.value)
+        amount: Math.round(expenseAmount.value)
     }
     // SAVE THE ENTRY TO ENTRY_LIST
     if(EDITTING_ID !== null) {
@@ -137,7 +137,7 @@ addIncome.addEventListener("click", function () {
     let income = {
         type: "income",
         title: incomeTitle.value,
-        amount: Math.round(incomeAmount.value)
+        amount: Math.round(expenseAmount.value)
     }
     if(EDITTING_ID !== null) {
         ENTRY_LIST[EDITTING_ID] = income;
@@ -176,6 +176,7 @@ function deleteEntry(entry) {
 }
 
 function editEntry(entry) {
+    // console.log('We are here');
     let ENTRY = ENTRY_LIST[entry.parentNode.id];
    
     EDITTING_ID = entry.parentNode.id;
@@ -189,6 +190,8 @@ function editEntry(entry) {
         expenseTitle.value = ENTRY.title;
         openExpenseModal();
     }
+
+    // deleteEntry(entry);
 }
 function show() {
     var hide = Array.prototype.slice.call(document.querySelectorAll(".hide"));
