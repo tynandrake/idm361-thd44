@@ -1,6 +1,3 @@
-// NEED TO ADJUST FUNCTION TO EDIT ENTRY TO OPEN MODAL AND POPULATE ENTRY
-
-
 // Select Elements
 const balanceEl = document.querySelector(".balance .value");
 const incomeTotalEl = document.querySelector(".income-total");
@@ -13,7 +10,6 @@ const expenseList = document.querySelector("#expense .list");
 const allList = document.querySelector("#all .list");
 const incomeModal = document.querySelector(".modal-container-income");
 const expenseModal = document.querySelector(".modal-container-expense");
-
 const modalBackground = document.querySelector(".modal-background");
 
 // Select Btns
@@ -33,8 +29,6 @@ const incomeAmount = document.getElementById("income-amount-input");
 const addExpense = document.querySelector(".add-expense");
 const expenseTitle = document.getElementById("expense-title-input");
 const expenseAmount = document.getElementById("expense-amount-input");
-
-// const editBtn = document.getElementById("edit");
 
 // Variables
 let ENTRY_LIST = [];
@@ -137,7 +131,7 @@ addIncome.addEventListener("click", function () {
     let income = {
         type: "income",
         title: incomeTitle.value,
-        amount: Math.round(expenseAmount.value)
+        amount: Math.round(incomeAmount.value)
     }
     if(EDITTING_ID !== null) {
         ENTRY_LIST[EDITTING_ID] = income;
@@ -176,7 +170,6 @@ function deleteEntry(entry) {
 }
 
 function editEntry(entry) {
-    // console.log('We are here');
     let ENTRY = ENTRY_LIST[entry.parentNode.id];
    
     EDITTING_ID = entry.parentNode.id;
@@ -190,8 +183,6 @@ function editEntry(entry) {
         expenseTitle.value = ENTRY.title;
         openExpenseModal();
     }
-
-    // deleteEntry(entry);
 }
 function show() {
     var hide = Array.prototype.slice.call(document.querySelectorAll(".hide"));
