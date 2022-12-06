@@ -1,1 +1,11 @@
-
+.proj-fwh {
+ max-width: 860px;
+ margin: 0 auto;
+ padding: 40px 0;
+}
+img {
+    width: 100%;
+}
+p, h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+}

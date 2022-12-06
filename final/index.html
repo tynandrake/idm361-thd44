@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" manifest="cache.manifest">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale= 1.0, user-scalable=no, width=device-width, maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- Web page mobile friendly -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- Status bar black -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- App title -->
+	<meta name="apple-mobile-app-title" content="Budget">
+	<meta name="format-detection" content="telephone=no">
+
+	<link rel="stylesheet" href="css-normalize.css">
+	<link rel="stylesheet" href="css-add2home.css">
+	<link rel="stylesheet" href="css-main.css">
+	
+
+	<!-- **** ICONS **** -->
+	<link href="img/1024.png" sizes="1024x1024" rel="apple-touch-icon">
+	<link href="img/180.png" sizes="180x180" rel="apple-touch-icon">
+	<link href="img/167.png" sizes="167x167" rel="apple-touch-icon">
+	<link href="img/152.png" sizes="152x152" rel="apple-touch-icon">
+	<link href="img/144.png" sizes="144x144" rel="apple-touch-icon">
+	<link href="img/120.png" sizes="120x120" rel="apple-touch-icon">
+	<link href="img/114.png" sizes="114x114" rel="apple-touch-icon">
+	<link href="img/100.png" sizes="100x100" rel="apple-touch-icon">
+	<link href="img/87.png" sizes="87x87" rel="apple-touch-icon">
+	<link href="img/80.png" sizes="80x80" rel="apple-touch-icon">
+	<link href="img/76.png" sizes="76x76" rel="apple-touch-icon">
+	<link href="img/72.png" sizes="72x72" rel="apple-touch-icon">
+	<link href="img/60.png" sizes="60x60" rel="apple-touch-icon">
+	<link href="img/58.png" sizes="58x58" rel="apple-touch-icon">
+	<link href="img/57.png" sizes="57x57" rel="apple-touch-icon">
+	<link href="img/50.png" sizes="50x50" rel="apple-touch-icon">
+	<link href="img/40.png" sizes="40x40" rel="apple-touch-icon">
+	<link href="img/29.png" sizes="29x29" rel="apple-touch-icon">
+	<link href="img/20.png" sizes="20x20" rel="apple-touch-icon">
+
+	<title>Budget</title>
+
+</head>
+<body>
+	<div id="container">
+		<!-- Header Sections -->
+		<div class="budget-header">
+			<div class="balance">
+				<div class="value">$</div> 
+				<div class="header-title">Balance</div>
+			</div>
+			<div class="account">
+				<div class="income">
+					<div class="income-total"></div>
+					<div class="title">Income</div>
+				</div>
+				<div class="chart"></div>
+				<div class="expense">
+					<div class="expense-total"></div>
+					<div class="title">Expense</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Toggle Bar -->
+		<div class="budget-dashboard">
+			<div class="toggle">
+				<div class="tab1 active">Income</div>
+				<div class="tab2">Expense</div>
+				<div class="tab3">All</div>
+			</div>
+		</div>
+
+		<!-- List of Items -->
+		<div id="income">
+			<ul class="list"></ul>
+		</div>
+		<div id="expense">
+			<ul class="list hide"></ul>
+		</div>
+		<div id="all">
+			<ul class="list hide"></ul>
+		</div>
+
+
+		
+
+		<!-- Modals -->
+		<div class="modal-background"></div>
+		<div class="modal-container modal-container-income" id="modal_container_income">
+			<div class="modal">
+				<div class="modal-header">
+					<div class="modal-title">Add Income</div>
+					<button class="close1 close">Cancel</button>
+				</div>
+				<div class="modal-input">
+					<div class="input">
+						<div class="input-style">
+							<div>
+								Income
+								<input type="text" id="income-title-input" name="title" placeholder="Title">
+							</div>
+							<div>
+								<div>Amount</div>
+								<div class="input-number">
+									<div>$</div><input type="number" id="income-amount-input" name="amount">
+								</div>
+							</div>
+						</div>
+						<div class="add-income confirm-btn">
+							Confirm
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-container modal-container-expense" id="modal_container_expense">
+			<div class="modal">
+				<div class="modal-header">
+					<div class="modal-title">Add Expense</div>
+					<button class="close2 close">Cancel</button>
+				</div>
+				<div class="modal-input">
+					<div class="input">
+						<div class="input-style">
+							<div>
+								Expense
+								<input type="text" id="expense-title-input" name="title" placeholder="Title">
+							</div>
+							<div>
+								<div>Amount</div>
+								<div class="input-number">
+									<div>$</div><input type="number" id="expense-amount-input" name="amount" >
+								</div>
+							</div>
+						</div>
+						<div class="add-expense confirm-btn">
+							Confirm
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Add Buttons -->
+	<div class="add-btn">
+		<div class=add-btn-style id="add-btn-income">
+			<img src="img/add.svg">
+		</div>
+	</div>
+	<div class="add-btn hide">
+		<div class=add-btn-style id="add-btn-expense">
+			<img src="img/add.svg">
+		</div>
+	</div>
+
+	<div class="landscape">
+		<p>TURN DEVICE TO PORTRAIT</p>
+		<img src="img/rotate.svg">
+	</div>
+</body>
+<script src="js-refresh-manifest.js"></script>
+<script>
+	var addToHomeConfig = {
+		touchIcon: true
+	}
+</script>
+<script src="js-add2home.js"></script>
+<script src="chart.js"></script>
+<script src="js-main.js"></script>
+</html>
